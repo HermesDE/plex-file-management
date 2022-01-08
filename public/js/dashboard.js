@@ -1,3 +1,6 @@
+document.getElementById("renameFiles").addEventListener("click", renameFiles);
+document.getElementById("deleteFiles").addEventListener("click", deleteFiles);
+
 async function displayDirectories() {
   let response = await fetch(
     "/api/v1/settings/directory/type/exclude/download"

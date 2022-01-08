@@ -9,7 +9,6 @@
     <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="/js/dashboard.js" type="text/javascript"></script>
     <link href="/css/style.css" rel="stylesheet" />
     <link href="/css/modal.css" rel="stylesheet" />
     <link href="/css/navbar.css" rel="stylesheet" />
@@ -84,7 +83,7 @@
                   >
                     Close
                   </button>
-                  <button data-bs-dismiss="modal" onclick="renameFiles()" class="btn btn-plex">
+                  <button data-bs-dismiss="modal" id="renameFiles" class="btn btn-plex">
                     Rename and Move
                   </button>
                 </div>
@@ -110,7 +109,7 @@
       </div>
       <div class="row text-center">
         <div class="col-6">
-          <button class="btn btn-outline-danger" onclick="deleteFiles()">
+          <button class="btn btn-outline-danger" id="deleteFiles">
             Delete
           </button>
         </div>
@@ -122,3 +121,4 @@
     </div>
   </body>
 </html>
+<script src="/js/dashboard.js" type="text/javascript"></script>

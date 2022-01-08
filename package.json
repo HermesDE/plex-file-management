@@ -26,6 +26,7 @@
     "dotenv": "^10.0.0",
     "express-session": "^1.17.2",
     "filehound": "^1.17.5",
+    "helmet": "^5.0.1",
     "mongoose": "^6.1.5",
     "mv": "^2.1.1",
     "node-fetch": "^2.6.6",

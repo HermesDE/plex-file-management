@@ -2,10 +2,19 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
+const helmet = require("helmet");
 const port = process.env.PORT;
 const cookieParser = require("cookie-parser");
 const { session } = require("./src/database/database");
 const { mongoSessionStore } = require("./src/database/database");
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'"],
+    },
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,7 +27,7 @@ const oneMonth = 1000 * 60 * 60 * 24 * 30;
 app.use(
   session({
     key: "sessionId",
-    secret: "BZAwqKYEelR23ExAMkZL1ktLbBTH1Qgk",
+    secret: process.env.COOKIE_SECRET,
     store: mongoSessionStore,
     resave: false,
     saveUninitialized: false,

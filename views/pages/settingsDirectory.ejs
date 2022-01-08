@@ -6,13 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
     <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="/js/tabulator.min.js" type="text/javascript"></script>
+
     <link href="/css/style.css" rel="stylesheet" />
     <link href="/css/navbar.css" rel="stylesheet" />
     <link href="/css/settings.css" rel="stylesheet" />
@@ -264,7 +260,7 @@
               type="button"
               class="btn btn-danger"
               data-bs-dismiss="modal"
-              onclick="deleteDirectory()"
+              id="deleteDirectory"
             >
               Delete
             </button>
@@ -272,7 +268,7 @@
               type="submit"
               class="btn btn-plex"
               data-bs-dismiss="modal"
-              onclick="updateDirectory()"
+              id="updateDirectory"
             >
               Save changes
             </button>
@@ -282,98 +278,4 @@
     </div>
   </body>
 </html>
-<script>
-  function getDirectories() {
-    return new Promise(async (resolve, reject) => {
-      let response = await fetch("/api/v1/settings/directory");
-      let data = await response.text();
-      resolve(JSON.parse(data));
-    });
-  }
-
-  async function updateDirectory() {
-    let _id = document.getElementById("inputIdDirectory").value;
-    let name = document.getElementById("inputNameDirectory").value;
-    let type = document.getElementById("inputTypeDirectory").value;
-    let url = document.getElementById("inputUrlDirectory").value;
-
-    const obj = {
-      _id: _id,
-      name: name,
-      type: type,
-      url: url,
-    };
-
-    const response = await fetch("/api/v1/settings/directory", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj),
-    });
-    const content = await response.json();
-
-    if (content.error) {
-      return alert(content.error);
-    }
-
-    document.getElementById("tbody").innerHTML = "";
-    await drawTable();
-  }
-  async function deleteDirectory() {
-    let _id = document.getElementById("inputIdDirectory").value;
-
-    const response = await fetch("/api/v1/settings/directory", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ _id: _id }),
-    });
-    const content = await response.json();
-    console.log(content);
-
-    if (content.error) {
-      return alert(content.error);
-    }
-    document.getElementById("tbody").innerHTML = "";
-    await drawTable();
-  }
-
-  function drawTable() {
-    getDirectories().then((data) => {
-      if (data[0]) {
-        for (const obj of data) {
-          let tr = document.createElement("tr");
-          tr.id = obj._id;
-          tr.onclick = function () {
-            let modal = new bootstrap.Modal(
-              document.getElementById("changeDirectoryModal")
-            );
-            modal.show();
-            document.getElementById("inputNameDirectory").value = obj.name;
-            document.getElementById("inputTypeDirectory").value = obj.type;
-            document.getElementById("inputUrlDirectory").value = obj.url;
-            document.getElementById("inputIdDirectory").value = obj._id;
-          };
-          document.getElementById("tbody").appendChild(tr);
-
-          let tdName = document.createElement("td");
-          tdName.innerText = obj.name;
-
-          let tdURL = document.createElement("td");
-          tdURL.innerText = obj.url;
-
-          let tdType = document.createElement("td");
-          tdType.innerText = obj.type;
-
-          tr.appendChild(tdName);
-          tr.appendChild(tdURL);
-          tr.appendChild(tdType);
-        }
-      }
-    });
-  }
-
-  drawTable();
-</script>
+<script src="/js/settingsDirectory.js" type="text/javascript"></script>
