@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
+const fspromise = require("fs/promises");
 const Directory = require("../database/directorySchema");
 const User = require("../database/UserSchema");
 const {
@@ -36,10 +37,15 @@ router.post("/api/v1/user/me", async (req, res) => {
 });
 
 router.put("/api/v1/settings/directory", async (req, res) => {
+  let stopFunction = false;
   let _id = req.body._id;
   let name = req.body.name;
   let type = req.body.type;
   let url = req.body.url;
+
+  if (_id == "" || name == "" || type == "" || url == "") {
+    return res.json({ error: "not all required fields are filled" });
+  }
 
   let newName, newType, newUrl;
 
@@ -59,6 +65,16 @@ router.put("/api/v1/settings/directory", async (req, res) => {
     newUrl = url;
   } else {
     newUrl = directory.url;
+  }
+
+  await fspromise.readdir(newUrl).catch((err) => {
+    stopFunction = true;
+    res.json({
+      error: "Could not connect to the provided url",
+    });
+  });
+  if (stopFunction) {
+    return;
   }
 
   await Directory.findByIdAndUpdate(
@@ -105,11 +121,11 @@ router.get("/api/v1/settings/directory/id/:_id", async (req, res) => {
 });
 
 router.post("/api/v1/settings/directory", async (req, res) => {
-  let name = req.body.inputName;
-  let type = req.body.inputType;
-  let url = req.body.inputUrl;
-  let username = req.body.inputUsername || null;
-  let password = req.body.inputPassword || null;
+  let name = req.body.name;
+  let type = req.body.type;
+  let url = req.body.url;
+  let username = req.body.username || null;
+  let password = req.body.password || null;
 
   const directory = new Directory({
     name: name,
@@ -130,8 +146,8 @@ router.post("/api/v1/settings/directory", async (req, res) => {
 
   await directory
     .save()
-    .then(() => {
-      res.redirect("/settings/directories");
+    .then((directory) => {
+      res.json(directory);
     })
     .catch((err) => {
       res.json(err);
