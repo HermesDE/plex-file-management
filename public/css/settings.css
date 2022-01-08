@@ -1,0 +1,46 @@
+:root {
+  --plex-color: #cf651e;
+  --dark-gray: #1d2125;
+  --light-gray: #26292c;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: white;
+  background-color: var(--plex-color);
+  border-color: var(--plex-color) var(--plex-color) var(--plex-color);
+}
+.nav-link {
+  color: white;
+}
+.nav-link:hover {
+  color: white;
+}
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  border-color: var(--dark-gray) var(--dark-gray) var(--plex-color)
+    var(--dark-gray);
+}
+.nav {
+  padding-right: 0px;
+}
+
+.form-label {
+  color: white;
+}
+.form-control:focus {
+  border-color: var(--plex-color);
+  box-shadow: none;
+}
+.form-select:focus {
+  border-color: var(--plex-color);
+  box-shadow: none;
+}
+
+.modal-content {
+  background-color: var(--light-gray);
+}
+
+td {
+  cursor: pointer;
+}

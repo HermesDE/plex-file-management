@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Plex File Management</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link rounded navbar-active"
+            aria-current="page"
+            href="/dashboard"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <div class="dropdown nav-link">
+            <a
+              class="dropdown-toggle"
+              id="dropdownMenuLink"
+              href="#"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Directories
+            </a>
+
+            <ul
+              class="dropdown-menu"
+              id="directoryDropdown"
+              aria-labelledby="dropdownMenuLink"
+            ></ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/settings/general">Settings</a>
+        </li>
+      </ul>
+      <form method="get" action="/logout">
+        <button type="submit" class="btn btn-outline-light">Logout</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function getDirectories() {
+    return new Promise(async (resolve, reject) => {
+      const response = await fetch("/api/v1/settings/directory");
+      let data = await JSON.parse(await response.text());
+      resolve(data);
+    });
+  }
+
+  function drawDropdown() {
+    getDirectories().then((directories) => {
+      for (const directory of directories) {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.className = "dropdown-item";
+        a.href = "/directory/" + directory._id;
+        a.innerText = directory.name;
+        let ul = document.getElementById("directoryDropdown");
+        ul.appendChild(li);
+        li.appendChild(a);
+      }
+    });
+  }
+  drawDropdown();
+</script>

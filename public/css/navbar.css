@@ -1,0 +1,10 @@
+.navbar-dark .navbar-brand {
+  color: #cf651e;
+}
+.navbar-dark .navbar-brand:hover {
+  color: #cf651e;
+}
+
+.bg-dark {
+  background-color: #2c3035 !important;
+}

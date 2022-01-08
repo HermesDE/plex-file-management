@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <script src="/js/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/js/dashboard.js" type="text/javascript"></script>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/modal.css" rel="stylesheet" />
+    <link href="/css/navbar.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    <title>PFM Dashboard</title>
+  </head>
+  <body class="background">
+    <header><%- include("../partials/dashboardNavbar.ejs") %></header>
+
+    <div class="container">
+      <div
+            class="modal fade"
+            id="moveModal"
+            tabindex="-1"
+            aria-labelledby="moveModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="moveModalLabel">
+                    Move Files to directory
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <label for="inputDirectory" class="form-label">Select directory *</label>
+                        <select
+                        id="inputDirectory"
+                        name="inputDirectory"
+                        class="form-select"
+                      >
+                        
+                      </select>
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-6">
+                        <label for="inputName" class="form-label">Name *</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputName"
+                          name="inputName"
+                        />
+                      </div>
+                      <div class="col-6" >
+                        <label for="inputYear" class="form-label">Release year</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="inputYear"
+                          name="inputYear"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button data-bs-dismiss="modal" onclick="renameFiles()" class="btn btn-plex">
+                    Rename and Move
+                  </button>
+                </div>
+              </div>
+            </div>
+    </div>
+
+    <div class="container">
+      <div class="row mt-5 text-center">
+        <div class="col-12">
+          <h1><a href="/downloads">Downloads</a></h1>
+          <!-- <div id="downloads-table"></div> -->
+          <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Filename</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-6">
+          <button class="btn btn-outline-danger" onclick="deleteFiles()">
+            Delete
+          </button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-outline-plex" data-bs-toggle="modal"
+          data-bs-target="#moveModal">Move Files to library</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+:root {
+  --plex-color: #cf651e;
+  --dark-gray: #1d2125;
+}
+
+h1 {
+  color: white;
+}
+h5 {
+  color: white;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--plex-color);
+}
+
+.background {
+  background-color: var(--dark-gray);
+}
+.btn-plex {
+  color: #fff;
+  background-color: var(--plex-color);
+  border-color: var(--plex-color);
+}
+.btn-plex:hover {
+  color: #fff;
+  background-color: #bb5d05;
+  border-color: #bb5d05;
+}
+.btn-outline-plex {
+  color: var(--plex-color);
+  border-color: var(--plex-color);
+}
+.btn-outline-plex:hover {
+  color: #fff;
+  background-color: var(--plex-color);
+  border-color: var(--plex-color);
+}
+
+.form-label {
+  color: white;
+}
+.form-control:focus {
+  border-color: var(--plex-color);
+  box-shadow: none;
+}
+.form-select:focus {
+  border-color: var(--plex-color);
+  box-shadow: none;
+}
+
+.form-check-input:checked {
+  background-color: var(--plex-color);
+  border-color: var(--plex-color) !important;
+}

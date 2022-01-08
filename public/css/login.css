@@ -1,0 +1,10 @@
+:root {
+  --plex-color: #cf651e;
+  --dark-gray: #1d2125;
+  --light-gray: #26292c;
+}
+
+.border {
+  border-radius: 2px;
+  border-color: var(--plex-color) !important;
+}
