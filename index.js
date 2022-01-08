@@ -47,8 +47,7 @@ function ensureAuthentication(req, res, next) {
   if (req.session.isAuth) {
     return next();
   } else {
-    res.status(403);
-    res.render("pages/error/error403");
+    res.redirect("/login");
   }
 }
 
