@@ -11,7 +11,7 @@ function getAllFilesInDownloads() {
     for (const directory of directories) {
       await FileHound.create()
         .path(directory.url)
-        .match("*.mkv")
+        .match(["*.mkv", "*.mp4", "*.avi"])
         .find()
         .then((files) => {
           for (const file of files) {
