@@ -28,9 +28,16 @@
 .form-label {
   color: white;
 }
+.form-control {
+  color: white;
+  border-color: gray;
+  background-color: var(--light-gray);
+}
 .form-control:focus {
+  color: white;
   border-color: var(--plex-color);
   box-shadow: none;
+  background-color: var(--light-gray);
 }
 .form-select:focus {
   border-color: var(--plex-color);
@@ -39,6 +46,15 @@
 
 .modal-content {
   background-color: var(--light-gray);
+}
+
+.form-check-input {
+  margin-top: 0em;
+}
+
+.border-plex {
+  border-top: 3px solid var(--plex-color) !important;
+  background-color: var(--plex-color) !important;
 }
 
 td {

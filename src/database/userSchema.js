@@ -1,16 +1,26 @@
 const mongoose = require("mongoose");
+const plexConnectionSchema = require("./plexConnectionSchema");
+const plexLibrarySchema = require("./plexLibrariesSchema");
 
 const userSchema = new mongoose.Schema({
-  password: {
+  email: {
     type: String,
-    required: true,
   },
-  language: {
+  plexUsername: {
+    type: String,
+  },
+  plexId: {
+    type: String,
+  },
+  plexToken: {
+    type: String,
+  },
+  permission: {
+    type: Number,
+  },
+  apiLanguage: {
     type: String,
     default: "en-US",
-  },
-  apikey: {
-    type: String,
   },
 });
 

@@ -14,6 +14,9 @@ router.get("/dashboard", (req, res) => {
 router.get("/settings/general", (req, res) => {
   res.render("pages/settingsGeneral.ejs");
 });
+router.get("/settings/plex", (req, res) => {
+  res.render("pages/settingsPlex.ejs");
+});
 router.get("/settings/directories", (req, res) => {
   res.render("pages/settingsDirectory.ejs");
 });

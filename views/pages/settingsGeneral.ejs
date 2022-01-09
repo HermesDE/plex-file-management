@@ -21,53 +21,46 @@
         <div class="col">
           <h1 class="mt-5 text-center">Settings</h1>
         </div>
-        <div class="row mt-3">
-          <ul class="nav nav-tabs nav-fill">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="/settings/general"
-                >General</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/settings/directories">Directories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Placeholder</a>
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div class="row mt-3">
+        <ul class="nav nav-tabs nav-fill">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="/settings/general"
+              >General</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/settings/plex">Plex</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/settings/directories">Directories</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="row mt-5">
-          <h5 for="language" class="col-2 col-form-label">Language</h5>
-          <div class="col-10">
-            <select class="form-select" id="inputLanguage" name="inputLanguage">
-              <option value="en-US">English (America)</option>
-              <option value="de-DE">German (Germany)</option>
-            </select>
-          </div>
-        </div>
-        <div class="row mt-3">
-          <h5 for="apikey" class="col-2 col-form-label">TMDB Api-Key</h5>
-          <div class="col-10">
-            <input
-              type="text"
-              class="form-control"
-              id="inputApikey"
-              name="inputApikey"
-            />
-          </div>
-        </div>
-        <div class="row mt-3 text-center">
-          <div class="col">
-            <button id="updateGeneralSettings" class="btn btn-outline-plex">
-              Save
-            </button>
-          </div>
+      <div class="row mt-5">
+        <h5 for="apiLanguage" class="col-2 col-form-label">
+          TMDB API Language
+        </h5>
+        <div class="col-10">
+          <select class="form-select" id="apiLanguage" name="apiLanguage">
+            <option value="en-US">English (America)</option>
+            <option value="de-DE">German (Germany)</option>
+          </select>
         </div>
       </div>
+
+      <div class="row mt-3 text-center">
+        <div class="col">
+          <button id="updateGeneralSettings" class="btn btn-outline-plex">
+            Save
+          </button>
+        </div>
+      </div>
+
       <div class="row">
         <div
           class="modal fade"

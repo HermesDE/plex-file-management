@@ -11,22 +11,23 @@ const {
   renameMovie,
 } = require("../modules/filesystem");
 
-router.get("/api/v1/user/me", async (req, res) => {
-  let user = await User.findOne();
+router.get("/api/v1/me", async (req, res) => {
+  let user = await User.findOne({ plexId: req.session.plexUser.id });
+  res.json(user);
+});
+
+router.get("/api/v1/settings/general", async (req, res) => {
+  let user = await User.findOne({ plexId: req.session.plexUser.id });
   res.json({
-    _id: user._id,
-    language: user.language,
-    apikey: user.apikey,
+    apiLanguage: user.apiLanguage,
   });
 });
-router.post("/api/v1/user/me", async (req, res) => {
-  let _id = req.body._id;
-  let language = req.body.language;
-  let apikey = req.body.apikey;
+router.post("/api/v1/settings/general", async (req, res) => {
+  let apiLanguage = req.body.apiLanguage;
 
   await User.findOneAndUpdate(
-    { _id: _id },
-    { language: language, apikey: apikey }
+    { plexId: req.session.plexUser.id },
+    { apiLanguage: apiLanguage }
   )
     .then((result) => {
       res.json(result);

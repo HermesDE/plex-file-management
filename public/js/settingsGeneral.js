@@ -4,7 +4,7 @@ document
 
 function getGeneralSettings() {
   return new Promise(async (resolve, reject) => {
-    const response = await fetch("/api/v1/user/me", {
+    const response = await fetch("/api/v1/settings/general", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -18,15 +18,16 @@ function getGeneralSettings() {
 function updateGeneralSettings() {
   getGeneralSettings().then(async (result) => {
     let _id = result._id;
-    let language = document.getElementById("inputLanguage").value;
-    let apikey = document.getElementById("inputApikey").value;
 
-    const response = await fetch("/api/v1/user/me", {
+    const response = await fetch("/api/v1/settings/general", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ _id: _id, language: language, apikey: apikey }),
+      body: JSON.stringify({
+        _id: _id,
+        apiLanguage: apiLanguage,
+      }),
     });
     const status = await response.status;
     if (status != 200) {
@@ -40,8 +41,7 @@ function updateGeneralSettings() {
 
 function drawSettings() {
   getGeneralSettings().then((content) => {
-    document.getElementById("inputLanguage").value = content.language;
-    document.getElementById("inputApikey").value = content.apikey;
+    document.getElementById("apiLanguage").value = content.apiLanguage;
   });
 }
 drawSettings();

@@ -36,7 +36,7 @@ app.use(
 );
 
 app.use("/api/*", (req, res, next) => {
-  if (req.session.isAuth) {
+  if (req.session.plexUser) {
     return next();
   } else {
     return res.send("Unauthorized Request").status(403);
@@ -44,7 +44,7 @@ app.use("/api/*", (req, res, next) => {
 });
 
 function ensureAuthentication(req, res, next) {
-  if (req.session.isAuth) {
+  if (req.session.plexUser) {
     return next();
   } else {
     res.redirect("/login");

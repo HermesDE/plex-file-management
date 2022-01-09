@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/HermesDE/plex-file-management#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "^1.4.6",
@@ -27,11 +26,12 @@
     "express-session": "^1.17.2",
     "filehound": "^1.17.5",
     "helmet": "^5.0.1",
+    "login-with-plex": "^1.1.1",
     "mongoose": "^6.1.5",
     "mv": "^2.1.1",
     "node-fetch": "^2.6.6",
+    "plex-api": "^5.3.2",
     "scandirectory": "^6.16.0",
-    "tabulator-tables": "^5.0.10",
     "uuid": "^8.3.2"
   }
 }

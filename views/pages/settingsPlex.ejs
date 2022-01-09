@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-3.6.0.min.js" type="text/javascript"></script>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/navbar.css" rel="stylesheet" />
+    <link href="/css/settings.css" rel="stylesheet" />
+    <title>PFM Settings</title>
+  </head>
+  <body class="background">
+    <header><%- include("../partials/dashboardNavbar.ejs") %></header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="mt-5 text-center">Settings</h1>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <ul class="nav nav-tabs nav-fill">
+          <li class="nav-item">
+            <a class="nav-link" href="/settings/general">General</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/settings/plex"
+              >Plex</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/settings/directories">Directories</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row mt-5">
+        <h5 for="plexHostname" class="col-2 col-form-label">Plex hostname</h5>
+        <div class="col-10">
+          <input
+            type="text"
+            class="form-control"
+            id="plexHostname"
+            name="plexHostname"
+          />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <h5 for="plexPort" class="col-2 col-form-label">Plex port</h5>
+        <div class="col-10">
+          <input
+            type="number"
+            class="form-control"
+            id="plexPort"
+            name="plexPort"
+            placeholder="32400"
+          />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <h5 class="col-2 col-form-label">SSL</h5>
+        <div class="col-10 d-flex align-items-center">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="plexSSL"
+            name="plexSSL"
+          />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <h5 for="plexToken" class="col-2 col-form-label">Plex API-Token</h5>
+        <div class="col-10">
+          <input
+            type="text"
+            class="form-control"
+            id="plexToken"
+            name="plexToken"
+          />
+        </div>
+      </div>
+      <div class="row mt-3 text-center">
+        <div class="col">
+          <button id="updateGeneralSettings" class="btn btn-outline-plex">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="modal fade"
+        id="successModal"
+        tabindex="-1"
+        aria-labelledby="successModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="successModalLabel">Success</h5>
+            </div>
+            <div class="modal-body">
+              <h5>Successfully saved changes</h5>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-plex"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="/js/settingsPlex.js" type="text/javascript"></script>
